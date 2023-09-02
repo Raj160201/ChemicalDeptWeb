@@ -1,58 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function Navbar() {
-  //  start Search box powerd by google ...............................
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
-  const apiKey = "AIzaSyDQLAh_s-QeI0ydz1oL8HdjaR6MAMw1oh8"; // Replace with your Google API key
-  const cx = "c6af9c392ca8a4e33"; // Replace with your custom search engine ID
-  const searchResultsRef = useRef(null);
-  const fetchSearchResults = async () => {
-    try {
-      const response = await axios.get(
-        "https://www.googleapis.com/customsearch/v1",
-        {
-          params: {
-            q: searchQuery,
-            key: apiKey,
-            cx: cx,
-          },
-        }
-      );
-      setSearchResults(response.data.items || []);
-      setShowSearchResults(true);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    fetchSearchResults();
-  };
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchResultsRef.current &&
-        !searchResultsRef.current.contains(event.target)
-      ) {
-        setShowSearchResults(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-  //  end Search box powerd by google.............................
-
   useEffect(() => {
     /**
      * Mobile nav toggle
@@ -181,12 +129,12 @@ export default function Navbar() {
                       </span>
                     </Link>
                     <ul>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             Faculty & Advisors
                           </span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -201,10 +149,10 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Staff</span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -229,12 +177,12 @@ export default function Navbar() {
                       </span>
                     </Link>
                     <ul>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             UnderGraduate
                           </span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -249,12 +197,12 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             PostGraduate
                           </span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -269,10 +217,10 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Doctoral</span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -302,10 +250,10 @@ export default function Navbar() {
                           Research Areas & Labs
                         </Link>
                       </li>
-                      <li className="dropdown">
+                      <li class="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Projects</span>{" "}
-                          <i className="bi bi-chevron-down dropdown-indicator"></i>
+                          <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -395,34 +343,25 @@ export default function Navbar() {
                 </ul>
                 <i className="bi bi-list mobile-nav-toggle d-none"></i>
               </nav>
-              <form className="d-flex" role="search" onSubmit={handleSubmit}>
+              <form
+                className="d-flex"
+                method="GET"
+                action="https://www.google.com/search"
+                target="_blank"
+              >
                 <input
                   className="form-control me-2"
-                  type="search"
+                  type="text"
+                  name="q"
                   placeholder="Search"
                   aria-label="Search"
-                  value={searchQuery}
-                  onChange={handleInputChange}
                 />
+                <input type="hidden" name="domains" value="iitj.ac.in" />
+                <input type="hidden" name="sitesearch" value="iitj.ac.in" />
                 <button className="btn btn-outline-success" type="submit">
                   Search
                 </button>
               </form>
-              {/* Display search results here */}
-              <div
-                className={`search-results custom-search-results ${
-                  showSearchResults ? "show" : "hide"
-                }`}
-                ref={searchResultsRef}
-              >
-                {searchResults.map((result) => (
-                  <div key={result.formattedUrl}>
-                    <h3>{result.title}</h3>
-                    <p>{result.snippet}</p>
-                    <a href={result.link}>Read more</a>
-                  </div>
-                ))}
-              </div>
             </div>
           </header>
         </div>
