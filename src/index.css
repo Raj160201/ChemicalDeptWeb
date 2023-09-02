@@ -12,3 +12,52 @@ code {
     monospace;
 }
 
+.hide{
+  display: none;
+}
+.show{
+  display: block;
+}
+
+.custom-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 500px; /* Adjust the maximum height as needed */
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.custom-search-results div {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.custom-search-results h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.custom-search-results p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.custom-search-results a {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.custom-search-results a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
