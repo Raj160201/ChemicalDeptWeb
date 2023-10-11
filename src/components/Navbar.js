@@ -1,46 +1,84 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function Navbar() {
-  useEffect(() => {
-    /**
-     * Mobile nav toggle
-     */
-    const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
-    if (mobileNavToggle) {
-      mobileNavToggle.addEventListener("click", function (event) {
-        event.preventDefault();
-        document.querySelector("body").classList.toggle("mobile-nav-active");
-        this.classList.toggle("bi-list");
-        this.classList.toggle("bi-x");
-      });
-    }
 
-    /**
-     * Toggle mobile nav dropdowns
-     */
-    const navDropdowns = document.querySelectorAll(".navbar .dropdown > a");
-    navDropdowns.forEach((el) => {
-      el.addEventListener("click", function (event) {
-        if (
-          document
-            .querySelector(".mobile-nav-toggle")
-            .classList.contains("bi-x")
-        ) {
-          event.preventDefault();
-          this.classList.toggle("active");
-          this.nextElementSibling.classList.toggle("dropdown-active");
-          let dropDownIndicator = this.querySelector(".dropdown-indicator");
-          dropDownIndicator.classList.toggle("bi-chevron-up");
-          dropDownIndicator.classList.toggle("bi-chevron-down");
-        }
+    const onClickToggle = (event)=>{
+      const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
+      console.log(mobileNavToggle)
+      event.preventDefault();
+      document.querySelector("body").classList.toggle("mobile-nav-active");
+      mobileNavToggle.classList.toggle("bi-list");
+      mobileNavToggle.classList.toggle("bi-x");
+
+      const navDropdowns = document.querySelectorAll(".navbar .dropdown > a");
+      navDropdowns.forEach((el) => {
+        el.addEventListener("click", function (event) {
+          console.log("hello");
+          if (
+            document
+              .querySelector(".mobile-nav-toggle")
+              .classList.contains("bi-x")
+          ) {
+            event.preventDefault();
+            el.classList.toggle("active");
+            el.nextElementSibling.classList.toggle("dropdown-active");
+            let dropDownIndicator = el.querySelector(".dropdown-indicator");
+            dropDownIndicator.classList.toggle("bi-chevron-up");
+            dropDownIndicator.classList.toggle("bi-chevron-down");
+          }
+        });
       });
-    });
-  }, []);
+     }
+
+  // useEffect(() => {
+  //   /**
+  //    * Mobile nav toggle
+  //    */
+  //   const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
+  //   console.log(mobileNavToggle)
+  //   if (mobileNavToggle) {
+  //     console.log("Hello")
+  //     const asdf = (event) =>{
+  //       console.log("hello");
+  //       event.preventDefault();
+  //       document.querySelector("body").classList.toggle("mobile-nav-active");
+  //       mobileNavToggle.classList.toggle("bi-list");
+  //       mobileNavToggle.classList.toggle("bi-x");
+  //     };
+  //     mobileNavToggle.addEventListener("click", asdf) 
+
+  //   }
+
+  //   /**
+  //    * Toggle mobile nav dropdowns
+  //    */
+  //   const navDropdowns = document.querySelectorAll(".navbar .dropdown > a");
+  //   navDropdowns.forEach((el) => {
+  //     el.addEventListener("click", function (event) {
+  //       console.log("hello");
+  //       if (
+  //         document
+  //           .querySelector(".mobile-nav-toggle")
+  //           .classList.contains("bi-x")
+  //       ) {
+  //         event.preventDefault();
+  //         el.classList.toggle("active");
+  //         el.nextElementSibling.classList.toggle("dropdown-active");
+  //         let dropDownIndicator = el.querySelector(".dropdown-indicator");
+  //         dropDownIndicator.classList.toggle("bi-chevron-up");
+  //         dropDownIndicator.classList.toggle("bi-chevron-down");
+  //       }
+  //     });
+  //   });
+  // }, []);
+
+
   useEffect(() => {
     const navbar = document.getElementById("navbar");
     const header = document.getElementById("header");
     const headerHeight = header.clientHeight;
     const onScroll = () => {
+      console.log("hello");
       if (window.scrollY > headerHeight) {
         navbar.classList.add("navbar-fixed");
       } else {
@@ -50,6 +88,8 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  
   return (
     <>
       {/* <!-- ======= Header ======= --> */}
@@ -117,7 +157,7 @@ export default function Navbar() {
               <nav id="navbar" className="navbar">
                 <ul>
                   <li>
-                    <Link aria-current="page" to="/">
+                    <Link aria-current="page" to="#">
                       <span style={{ fontWeight: "bold" }}>Home</span>
                     </Link>
                   </li>
@@ -129,12 +169,12 @@ export default function Navbar() {
                       </span>
                     </Link>
                     <ul>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             Faculty & Advisors
                           </span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -149,10 +189,10 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Staff</span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -177,12 +217,12 @@ export default function Navbar() {
                       </span>
                     </Link>
                     <ul>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             UnderGraduate
                           </span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -197,12 +237,12 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>
                             PostGraduate
                           </span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -217,10 +257,10 @@ export default function Navbar() {
                           </li>
                         </ul>
                       </li>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Doctoral</span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -250,10 +290,10 @@ export default function Navbar() {
                           Research Areas & Labs
                         </Link>
                       </li>
-                      <li class="dropdown">
+                      <li className="dropdown">
                         <Link aria-current="page" to="#">
                           <span style={{ fontWeight: "bold" }}>Projects</span>{" "}
-                          <i class="bi bi-chevron-down dropdown-indicator"></i>
+                          <i className="bi bi-chevron-down dropdown-indicator"></i>
                         </Link>
                         <ul>
                           <li>
@@ -341,7 +381,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                 </ul>
-                <i className="bi bi-list mobile-nav-toggle d-none"></i>
+                <i className="bi bi-list mobile-nav-toggle d-none" onClick={onClickToggle}></i>
               </nav>
               <form
                 className="d-flex"
