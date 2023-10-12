@@ -307,9 +307,10 @@ h6 {
     top: 20px;
     z-index: 9999;
     right: 20px;
+    margin-top: 10px;
   }
 
-  .mobile-nav-toggle.bi-x {
+  .mobile-nav-toggle .bi-x {
     color: var(--color-white);
   }
 

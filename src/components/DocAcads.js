@@ -23,7 +23,7 @@ export default function DocAcads() {
             <div className='container'>
                 <div className='container'>
                 <p style={{textAlign:"justify"}}>Doctor of Philosophy in Chemical Engineering is focussed in a manner so that research scholar masters the different skills required for the research work, creatively shape and solve the complex problems, translate molecular information into new products and processes, generate new research ideas and IPR. The focus of the doctoral research  would be:</p>
-                    <ul><span class='bi bi-caret-right-fill'> Translate molecular information to new products and processes with 3D printing and Industry 4.0+.</span></ul>
+                    <ul><span class='bi bi-caret-right-fill'> Translate molecular information to new products and processes with 3D printing and Industry 4.0+ .</span></ul>
                     <ul><span class='bi bi-caret-right-fill'> Generate new research ideas and IPR.</span></ul>
                 </div>
             </div>
